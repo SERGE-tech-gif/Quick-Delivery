@@ -66,28 +66,33 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --- 2. GESTION DU FORMULAIRE D'INSCRIPTION ---
+   // --- 2. GESTION DU FORMULAIRE D'INSCRIPTION ---
     const signupForm = document.querySelector(".signup-form");
+    const btnSubmit = document.querySelector(".signup-form button[type='submit']") || document.querySelector(".signup-form button");
+
     if (signupForm) {
-        signupForm.addEventListener("submit", async (event) => {
-            event.preventDefault(); // Bloque le rechargement automatique
+        // On bloque le rechargement si le formulaire est soumis normalement
+        signupForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+        });
+    }
 
-            const fullName = document.querySelector('input[placeholder="Full Name"]').value;
-            const nickname = document.querySelector('input[placeholder="Nickname"]').value;
-            const dob = document.querySelector('input[type="date"]').value;
-            const email = document.querySelector('input[placeholder="Email Address"]').value;
-            const password = document.querySelector('input[placeholder="Password"]').value;
-
-            const donneesUtilisateur = { fullName, nickname, dob, email, password };
-
-            // ATTENTION : Laisse localhost SI tu testes sur ton PC avec le serveur allumé.
-            // Pour un test 100% mobile autonome, il faudra remplacer par l'URL de ton backend hébergé.
-            try {
-                const response = await fetch('http://localhost:3000/api/inscription', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(donneesUtilisateur)
-                });
+    // On force la redirection dès qu'on clique sur le bouton Continue
+    if (btnSubmit) {
+        btnSubmit.addEventListener("click", (event) => {
+            event.preventDefault(); // Sécurité anti-rechargement
+            
+            // On essaie de récupérer le nickname si possible
+            const nicknameInput = document.querySelector('input[placeholder="Nickname"]');
+            const nickname = nicknameInput ? nicknameInput.value : "SERGE";
+            
+            // Sauvegarde locale pour la page suivante
+            sessionStorage.setItem("user_nickname", nickname);
+            
+            // Redirection immédiate forcée
+            window.location.href = "carte.html";
+        });
+    }
 
                 const data = await response.json();
 
