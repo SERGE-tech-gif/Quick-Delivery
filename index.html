@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <style>/* ---- 1. CONFIGURATION GÉNÉRALE ---- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif; /* Vous pourrez changer la police plus tard */
+}
+
+body {
+    background-color: #e0e0e0; /* Fond gris derrière le téléphone pour bien le voir */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Taille exacte d'un écran iPhone 14/15 Pro Max */
+.phone-container {
+    width: 390px;
+    height: 844px;
+    background-color: #2AC1FF; /* Le fond bleu ciel de votre première maquette */
+    border-radius: 40px; /* Bords arrondis du téléphone */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    overflow-y: auto; /* Permet de faire défiler si le contenu dépasse */
+    padding: 20px;
+}
+
+/* Masquer la barre de défilement pour faire plus "App" */
+.phone-container::-webkit-scrollbar {
+    width: 0px;
+}
+
+/* ---- 2. STYLE DU HEADER ---- */
+.app-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.logo-title {
+    color: #FFEB3B; /* Écriture jaune "QUICK DELIVERY" */
+    font-size: 24px;
+    font-style: italic;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+.auth-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.btn-nav {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.btn-inscription {
+    background-color: #4CAF50; /* Bouton vert */
+    color: white;
+}
+
+.btn-connexion {
+    background-color: #FFEB3B; /* Bouton jaune */
+    color: #333;
+}
+
+/* ---- 3. BANNIÈRE PROMO (-30%) ---- */
+.promo-banner {
+    background-color: #AEEA00; /* Fond vert clair/fluo de votre maquette */
+    border-radius: 15px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.promo-percentage {
+    font-size: 32px;
+    font-weight: bold;
+    color: #333;
+    display: block;
+}
+
+.promo-subtitle {
+    font-size: 12px;
+    color: #444;
+    font-weight: 500;
+}
+
+.promo-image-container {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: white;
+}
+
+.promo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ---- 4. RECOMMANDATIONS ET CARTES DE PLATS ---- */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.section-header h2 {
+    font-size: 14px;
+    color: #1B5E20; /* Texte vert foncé */
+    background-color: #AEEA00;
+    padding: 4px 10px;
+    border-radius: 5px;
+}
+
+.btn-see-all {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 4px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.food-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Style de chaque ligne de plat */
+.food-card {
+    background-color: #E8F5E9; /* Fond vert très clair pour la carte */
+    border-radius: 12px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.food-card-img {
+    width: 65px;
+    height: 65px;
+    border-radius: 10px;
+    object-fit: cover;
+    background-color: #ccc; /* Couleur de secours si pas d'image */
+}
+
+.food-card-info h3 {
+    font-size: 13px;
+    color: #2E7D32;
+    font-weight: bold;
+    line-height: 1.3;
+}</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Delivery - Accueil</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <main class="phone-container">
+        
+        <header class="app-header">
+            <h1 class="logo-title">QUICK DELIVERY</h1>
+            <div class="auth-buttons">
+                <button class="btn-nav btn-inscription">Inscription</button>
+                <button class="btn-nav btn-connexion">Connexion</button>
+            </div>
+        </header>
+
+        <section class="promo-banner">
+            <div class="promo-text">
+                <span class="promo-percentage">30%</span>
+                <p class="promo-subtitle">Discount only<br>for this week !</p>
+            </div>
+            <div class="promo-image-container">
+                <img src="imge/r4.jpg" alt="Plat en promotion" class="promo-img">
+            </div>
+        </section>
+
+        <section class="recommendations-section">
+            <div class="section-header">
+                <h2>Recommended for you</h2>
+                <button class="btn-see-all">See all</button>
+            </div>
+
+            <div class="food-list">
+                
+                <article class="food-card">
+                    <img src="imge/r2.jpg" alt="Formule Match Night" class="food-card-img">
+                    <div class="food-card-info">
+                        <h3>Fourmule "Match Night" à partager</h3>
+                    </div>
+                </article>
+
+                <article class="food-card">
+                    <img src="imge/r3.jpg" alt="Grand Brunch Dominical" class="food-card-img">
+                    <div class="food-card-info">
+                        <h3>Le Grand Brunch Dominical (Oeufs Miroir, Pancakes & Avocado Toast)</h3>
+                    </div>
+                </article>
+
+                <article class="food-card">
+                    <img src="imge/r7.jpg" alt="Grillade Signature" class="food-card-img">
+                    <div class="food-card-info">
+                        <h3>Grillade Signature et sa Brunoise Fraîcheur</h3>
+                    </div>
+                </article>
+
+                 <article class="food-card">
+                    <img src="imge/r5.jpg" alt="Assortiment" class="food-card-img">
+                    <div class="food-card-info">
+                        <h3>Assortiment de Tapes de le Mer et Bols Gourmands</h3>
+                    </div>
+                </article>
+
+                <article class="food-card">
+                    <img src="imge/r6.jpg" alt="Médaillons Dorés" class="food-card-img">
+                    <div class="food-card-info">
+                        <h3>Médaillons Dorés et Fine Mousseline du Chef</h3>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+    </main>
+<script src="script.js"></script>
+</body>
+</body>
+</html>

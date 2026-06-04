@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <style>#map {
+    width: 100%;
+    height: 450px; /* Ajoute une hauteur fixe temporairement pour forcer l'affichage */
+    z-index: 1;
+}</style>
+<style>.btn-continue-map {
+    background-color: #2AC1FF; /* Ton beau bleu ciel Figma */
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+}</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Delivery - Localisation</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <main class="phone-container bg-map-screen">
+        
+        <header class="map-header">
+            <a href="inscription.html" class="back-btn-dark">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+            </a>
+            <h2>See Your Location</h2>
+        </header>
+
+        <div id="map"></div>
+
+        <div class="map-footer">
+            <p class="location-title">Location</p>
+            <div class="address-box">
+                <span class="address-text">Bepanda, Douala</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#777" stroke-width="2">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+            </div>
+            
+           <button class="btn-continue-map" id="btn-valider-commande">
+    Continue
+</button>
+        </div>
+
+    </main>
+
+   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+    // 1. Personnalisation dynamique avec le pseudo de l'utilisateur
+    const userNickname = sessionStorage.getItem("userNickname");
+    if (userNickname) {
+        const headerTitle = document.querySelector(".map-header h2");
+        headerTitle.textContent = `See Your Location, ${userNickname}`;
+    }
+
+    // 2. Configuration de base de la carte (centrée par défaut sur Douala)
+    let defaultCoords = [4.0511, 9.7679]; // Bepanda, Douala
+    
+    const map = L.map('map', { zoomControl: false }).setView(defaultCoords, 14);
+    
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap'
+    }).addTo(map);
+
+    // Icône personnalisée pour le marqueur
+    const markerIcon = L.divIcon({
+        className: 'custom-marker',
+        html: '<div style="background-color: white; border: 2px solid black; border-radius: 5px; padding: 4px; font-size: 14px; text-align: center;">🏠</div>',
+        iconSize: [30, 30]
+    });
+
+    // On place le marqueur initial
+    let mainMarker = L.marker(defaultCoords, { icon: markerIcon }).addTo(map);
+
+    // 3. Demande de géolocalisation réelle du navigateur
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const userLat = position.coords.latitude;
+                const userLng = position.coords.longitude;
+                const newCoords = [userLat, userLng];
+
+                // Déplacer la carte et le marqueur sur la vraie position de l'utilisateur
+                map.setView(newCoords, 16);
+                mainMarker.setLatLng(newCoords);
+                
+                // Optionnel : Tu pourrais ici modifier le texte "Bepanda, Douala" par "Ma position actuelle"
+                document.querySelector(".address-text").textContent = "Position détectée en direct";
+            },
+            () => {
+                console.log("L'utilisateur a refusé la géolocalisation, conservation de la position par défaut.");
+            }
+        );
+    }
+</script>
+</body>
+</html>

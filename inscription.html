@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <style>/* ---- 5. STYLE POUR LA PAGE INSCRIPTION (ÉCRAN 2) ---- */
+
+/* Changement de fond spécifique pour cet écran */
+.bg-beige {
+    background-color: #FDF6E2 !important; /* Le fond beige/crème de ta maquette */
+    padding: 0 0 20px 0; /* On enlève le padding du haut pour coller l'en-tête vert */
+    display: flex;
+    flex-direction: column;
+}
+
+/* En-tête vert avec l'avatar */
+.profile-header {
+    background-color: #1E824C; /* Le vert foncé de ton rectangle supérieur */
+    width: 100%;
+    height: 180px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    margin-bottom: 40px;
+}
+
+/* Bouton de retour flèche */
+.back-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+}
+
+/* Cercle blanc de l'avatar */
+.avatar-container {
+    width: 90px;
+    height: 90px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.avatar-icon {
+    width: 50px;
+    height: 50px;
+    color: #333;
+}
+
+/* Formulaire et champs de saisie */
+.signup-form {
+    padding: 0 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    flex-grow: 1;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 15px;
+    background-color: #2AC1FF; /* Le bleu ciel de tes champs de saisie */
+    border: none;
+    border-radius: 4px; /* Forme rectangulaire légèrement arrondie comme sur ta photo */
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Style du texte à l'intérieur des inputs */
+.input-group input::placeholder {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Pour enlever la bordure noire quand on clique pour taper */
+.input-group input:focus {
+    outline: 2px solid #1E824C;
+}
+
+/* Le bouton bleu "Continue" tout en bas */
+.btn-continue {
+    background-color: #2AC1FF;
+    color: white;
+    border: none;
+    border-radius: 25px; /* Très arrondi comme sur ton Figma */
+    padding: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: auto; /* Pousse le bouton vers le bas de l'écran */
+    box-shadow: 0 4px 10px rgba(42, 193, 255, 0.3);
+    transition: background-color 0.2s;
+}
+
+.btn-continue:hover {
+    background-color: #1aa6e0;
+}</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Delivery - Inscription</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <main class="phone-container bg-beige">
+        
+        <header class="profile-header">
+            <a href="index.html" class="back-btn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+            </a>
+            
+            <div class="avatar-container">
+                <svg viewBox="0 0 24 24" fill="currentColor" class="avatar-icon">
+                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                </svg>
+            </div>
+        </header>
+
+       <form class="signup-form">
+    
+    <div class="input-group">
+        <input type="text" name="fullName" placeholder="Full Name" required>
+    </div>
+
+    <div class="input-group">
+        <input type="text" name="nickname" placeholder="Nickname" required>
+    </div>
+
+    <div class="input-group">
+        <input type="date" name="dob" required>
+    </div>
+
+    <div class="input-group">
+        <input type="email" name="email" placeholder="Email" required>
+    </div>
+
+    <div class="input-group">
+        <input type="password" name="password" placeholder="Password" required>
+    </div>
+
+    <button type="submit" class="btn-continue">
+        Continue
+    </button>
+
+</form>
+                                             
+    </main>
+<script src="../script.js"></script>
+</body>
+</body>
+</html>
